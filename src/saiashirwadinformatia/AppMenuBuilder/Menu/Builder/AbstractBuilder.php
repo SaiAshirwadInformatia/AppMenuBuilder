@@ -6,6 +6,8 @@
  */
 namespace saiashirwadinformatia\AppMenuBuilder\Menu\Builder;
 
+use saiashirwadinformatia\AppMenuBuilder\Menu\AbstractMenuList;
+
 abstract class AbstractBuilder
 {
     public $menuClass;
@@ -52,7 +54,7 @@ abstract class AbstractBuilder
         if ($activeClass) {
             $this->activeClass = $activeClass;
         }
-        return '<ul class="' . $this->menuClass . '">' . self::buildMenu($items) . '</ul>';
+        return '<ul class="' . $this->menuClass . '">' . $this->buildMenu($items) . '</ul>';
     }
 
     /**

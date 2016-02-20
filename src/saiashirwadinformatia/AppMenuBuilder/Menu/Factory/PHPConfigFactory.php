@@ -14,13 +14,20 @@ class PHPConfigFactory extends MenuFactory implements MenuFactoryInterface
     /**
      * @param $config
      */
-    public function build($config)
+    public function build($config, $base_url = '')
     {
-        if (!file_exists($config)) {
+        if (is_string($config) && !file_exists($config)) {
             throw new \InvalidArgumentException('Config file (' . $config . ') not found');
         }
+        if($base_url){
+            $this->base_url = $base_url;
+        }
         $itemList = new ItemList();
-        $menuList = include $config;
+        if(is_string($config)){
+            $menuList = include $config;
+        }else{
+            $menuList = $config;
+        }
         foreach ($menuList as $menuKey => $menuArr) {
             $this->addItem($menuKey, $menuArr, $itemList);
         }

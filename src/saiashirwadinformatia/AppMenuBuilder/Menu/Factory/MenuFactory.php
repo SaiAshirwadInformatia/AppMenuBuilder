@@ -6,6 +6,9 @@
  */
 namespace saiashirwadinformatia\AppMenuBuilder\Menu\Factory;
 
+use saiashirwadinformatia\AppMenuBuilder\Menu\Item;
+use saiashirwadinformatia\AppMenuBuilder\Menu\ItemList;
+
 abstract class MenuFactory
 {
     protected $base_url;
@@ -16,8 +19,8 @@ abstract class MenuFactory
         $this->base_url = $base_url;
         $this->current_url = $current_url;
         if ($this->base_url) {
-            if (strrpos($this->base_url, '\\') !== strlen($this->base_url)) {
-                $this->base_url .= '\\';
+            if (strrpos($this->base_url, '/') !== strlen($this->base_url) - 1) {
+                $this->base_url .= '/';
             }
         }
     }
@@ -32,7 +35,7 @@ abstract class MenuFactory
         if (!isset($menuArr['label']) || !isset($menuArr['url'])) {
             throw new \Exception('Menu item array element invalid for key: ' . $menuKey);
         }
-        $menuArr['url'] = str_replace('#basehref#', $this->base_url, $menuArr['url']);
+        $menuArr['url'] = str_replace('#baseurl#', $this->base_url, $menuArr['url']);
         $item = new Item($menuKey, $menuArr['label'], $menuArr['url']);
         $children = new ItemList();
         $item->addChildren($children);

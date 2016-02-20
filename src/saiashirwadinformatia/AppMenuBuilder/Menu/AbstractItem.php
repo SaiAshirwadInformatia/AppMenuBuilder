@@ -174,7 +174,7 @@ abstract class AbstractItem implements ItemInterface
      */
     public function isActive($currentUrl)
     {
-        return $this->url && $this->url != '#'
-        && strpos($currentUrl, $this->url) !== false;
+        return $this->url && $this->url !== '#'
+        && $this->url === $currentUrl;
     }
 }

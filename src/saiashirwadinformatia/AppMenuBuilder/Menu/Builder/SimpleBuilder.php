@@ -55,6 +55,8 @@ class SimpleBuilder extends AbstractBuilder implements MenuBuilderInterface
             foreach ($menuList as $key => $item) {
                 if ($item->isActive($this->currentUrl)) {
                     $active = $this->activeClass;
+                }else{
+                    $active = '';
                 }
                 if ($item->hasChildren()) {
                     $html .= $this->itemElement($item, $this->parentClass . ' ' . $active);

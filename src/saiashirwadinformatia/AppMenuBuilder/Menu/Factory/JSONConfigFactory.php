@@ -6,7 +6,7 @@
  */
 namespace saiashirwadinformatia\AppMenuBuilder\Menu\Factory;
 
-abstract class JSONConfigFactory extends MenuFactory implements MenuFactoryInterface
+class JSONConfigFactory extends MenuFactory implements MenuFactoryInterface
 {
 
     public function build($config)
